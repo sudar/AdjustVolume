@@ -1,3 +1,22 @@
+/**
+   AdjustVolume - Adjust the volume of your Android phone
+    
+   Copyright 2011  Sudar Muthu  (email : sudar@sudarmuthu.com)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
 package com.sudarmuthu.android.adjustvolume;
 
 import android.app.Activity;
@@ -14,6 +33,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * The Main activity
+ * 
+ * @author "Sudar Muthu (http://sudarmuthu.com)"
+ *
+ */
 public class AdjustVolume extends Activity {
 	
     protected static final String TAG = "AdjustVolume";
@@ -102,14 +127,14 @@ public class AdjustVolume extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		
-		// if you connect in onStart() you must not forget to disconnect when your app is closed
-//		Amarino.disconnect(this, DEVICE_ADDRESS);
-//		
-		// do never forget to unregister a registered receiver
-//		unregisterReceiver(arduinoReceiver);
 	}
 	
+	/**
+	 * The service connection class that allows you to talk to the MediaPlayer Service
+	 * 
+	 * @author "Sudar Muthu (http://sudarmuthu.com)"
+	 *
+	 */
 	private class MediaPlayerServiceConnection implements ServiceConnection {
     	public com.htc.music.IMediaPlaybackService mServiceHtc;
     	public com.android.music.IMediaPlaybackService mServiceAndroid;
@@ -118,41 +143,11 @@ public class AdjustVolume extends Activity {
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			Log.i("MediaPlayerServiceConnection", "Connected! Name: " + name.getClassName());
 
-			// This is the important line
+			// This is the important line where we bind the service
     		if (isHtc)
     			mServiceHtc = com.htc.music.IMediaPlaybackService.Stub.asInterface(service);
 			else
 				mServiceAndroid = com.android.music.IMediaPlaybackService.Stub.asInterface(service);
-			
-			// If all went well, now we can use the interface
-//			try {
-//				
-//				if (isHtc) {
-//					
-//					Log.i("MediaPlayerServiceConnection", "Playing track: " + mServiceHtc.getTrackName());
-//					Log.i("MediaPlayerServiceConnection", "By artist: " + mServiceHtc.getArtistName());
-//					if (mServiceHtc.isPlaying()) {
-//						Log.i("MediaPlayerServiceConnection", "Music player is playing.");
-//						// Next Track
-//						mServiceHtc.next();
-//					} else {
-//						Log.i("MediaPlayerServiceConnection", "Music player is not playing.");
-//					}
-//				} else {
-//					
-//					Log.i("MediaPlayerServiceConnection", "Playing track: " + mServiceAndroid.getTrackName());
-//					Log.i("MediaPlayerServiceConnection", "By artist: " + mServiceAndroid.getArtistName());
-//					if (mServiceAndroid.isPlaying()) {
-//						Log.i("MediaPlayerServiceConnection", "Music player is playing.");
-//					} else {
-//						Log.i("MediaPlayerServiceConnection", "Music player is not playing.");
-//					}
-//				}
-//			} catch (Exception e) {
-//				Log.i("MediaPlayerServiceConnection", "Some Exception");
-//	    		e.printStackTrace();
-//	    		throw new RuntimeException(e);
-//			}
 		}
 
 		/**
