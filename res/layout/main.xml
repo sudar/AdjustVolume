@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/upButton" android:text="@string/increase"></Button>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/downButton" android:text="@string/reduce"></Button>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/nextTrack" android:text="@string/next"></Button>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/prevTrack" android:text="@string/prev"></Button>
+</LinearLayout>
