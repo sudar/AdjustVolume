@@ -32,6 +32,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * The Main activity
@@ -102,6 +103,22 @@ public class AdjustVolume extends Activity {
         		}
         	}
         });
+        
+        Button currentTrack = (Button) findViewById(R.id.currentTrack);
+        final TextView trackName = (TextView) findViewById(R.id.trackname);
+        
+        currentTrack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try {
+					trackName.setText(musicConn.getTrackName());
+				} catch (RemoteException e) {
+        			Log.i(TAG, "Error while getting current song");					
+					e.printStackTrace();
+				}
+			}
+		});
     }
     
 	@Override
@@ -174,6 +191,20 @@ public class AdjustVolume extends Activity {
 				mServiceHtc.prev();
 			} else {
 				mServiceAndroid.prev();
+			}
+		}
+		
+		/**
+		 * Get the name of the current Trackname
+		 * 
+		 * @return
+		 * @throws RemoteException
+		 */
+		public String getTrackName() throws RemoteException {
+			if (isHtc) {
+				return mServiceHtc.getTrackName();
+			} else {
+				return mServiceAndroid.getTrackName();				
 			}
 		}
 

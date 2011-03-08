@@ -6,4 +6,5 @@
     <string name="increase">Increase Volume</string>
     <string name="next">Next Song</string>
     <string name="prev">Previous Song</string>
+    <string name="currentTrack">Current Track</string>
 </resources>
